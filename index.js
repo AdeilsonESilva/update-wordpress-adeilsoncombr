@@ -18,10 +18,37 @@ const puppeteer = require('puppeteer');
     await page.waitForNavigation();
 
     await page.goto('https://adeilson.com.br/wp-admin/update-core.php');
-    await page.click('#plugins-select-all');
-    await page.click('#upgrade-plugins-2');
-    await page.waitForNavigation({ timeout: 0 });
-    console.log('Updated');
+    try {
+      await page.click('#plugins-select-all');
+      await page.click('#upgrade-plugins-2');
+      await page.waitForNavigation({ timeout: 0 });
+      console.log('Updated plugins');
+    } catch (error) {
+      console.log('No plugin to update');
+    }
+
+    try {
+      const locale = await page.$(
+        '#wpbody-content > div.wrap > ul > li:nth-child(1) > form > p > input[type=hidden]:nth-child(2)'
+      );
+      const textLocale = await page.evaluate(element => element.value, locale);
+
+      const upgradeButton = await page.$('#upgrade');
+      const textUpgradeButton = await page.evaluate(
+        element => element.value,
+        upgradeButton
+      );
+
+      if (textLocale === 'pt_BR' && textUpgradeButton !== 'Reinstalar agora') {
+        await page.click('#upgrade');
+        await page.waitForNavigation({ timeout: 0 });
+        console.log('Updated version');
+      } else {
+        throw Error('upgrade not found');
+      }
+    } catch (error) {
+      console.log('No version to update');
+    }
   } catch (error) {
     console.log('error', error);
   } finally {
