@@ -33,13 +33,9 @@ jobs:
       - name: Install dependencies
         run: yarn --frozen-lockfile
 
-      # - name: Set env
-      #   env:
-      #     TEST: ${{ secrets.TEST }}
-
       # Runs a single command using the runners shell
       - name: Run upgrade
         run: yarn run:upgrade
         env:
-          TEST: ${{ secrets.TEST }}
+          TEST_NAME: ${{ secrets.TEST_NAME }}
           FIRST_NAME: Mona
