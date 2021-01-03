@@ -4,7 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon "
+    "dev": "nodemon ",
+    "upgrade": "node index.js"
   },
   "dependencies": {
     "dotenv": "^8.2.0",
