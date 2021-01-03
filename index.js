@@ -4,6 +4,7 @@ const puppeteer = require('puppeteer');
 (async () => {
   console.log('Starting update');
   console.log('TEST_NAME: ', process.env.TEST_NAME);
+  console.log('TEST_NAME_2: ', process.env.TEST_NAME_2);
   console.log('FIRST_NAME: ', process.env.FIRST_NAME);
 
   const browser = await puppeteer.launch({
