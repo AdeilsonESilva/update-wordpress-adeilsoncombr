@@ -37,5 +37,5 @@ jobs:
       - name: Run upgrade
         run: yarn run:upgrade
         env:
-          TEST_NAME_2: ${{ secrets.TEST_NAME_2 }}
-          FIRST_NAME: Mona
+          USER_WP: ${{ secrets.USER_WP }}
+          PASS_WP: ${{ secrets.PASS_WP }}
