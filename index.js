@@ -3,7 +3,7 @@ const puppeteer = require('puppeteer');
 
 (async () => {
   console.log('Starting update');
-  console.log('Test: ', process.env.TEST);
+  console.log('Test: ', process.env.GITHUB_TOKEN);
 
   const browser = await puppeteer.launch({
     // headless: false,
