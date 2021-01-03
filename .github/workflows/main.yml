@@ -33,6 +33,10 @@ jobs:
       - name: Install dependencies
         run: yarn --frozen-lockfile
 
+      - name: Set env
+        env:
+          TEST: ${{ secrets.GITHUB_TEST }}
+
       # Runs a single command using the runners shell
       - name: Run upgrade
         run: yarn run:upgrade
