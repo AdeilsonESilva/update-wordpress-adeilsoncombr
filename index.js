@@ -30,6 +30,15 @@ const puppeteer = require('puppeteer');
     }
 
     try {
+      await page.click('#themes-select-all');
+      await page.click('#upgrade-themes-2');
+      await page.waitForNavigation({ timeout: 0 });
+      console.log('Updated themes');
+    } catch (error) {
+      console.log('No themes to update');
+    }
+
+    try {
       const locale = await page.$(
         '#wpbody-content > div.wrap > ul > li:nth-child(1) > form > p > input[type=hidden]:nth-child(2)'
       );
