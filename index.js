@@ -58,7 +58,7 @@ const puppeteer = require('puppeteer');
         throw Error('upgrade not found');
       }
     } catch (error) {
-      console.log('No version to update');
+      console.log('No version to upgrade');
     }
   } catch (error) {
     console.log('error', error);
