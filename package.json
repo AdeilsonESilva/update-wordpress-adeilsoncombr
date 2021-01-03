@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "nodemon ",
-    "upgrade": "node index.js"
+    "run:upgrade": "node index.js"
   },
   "dependencies": {
     "dotenv": "^8.2.0",
