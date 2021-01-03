@@ -42,3 +42,4 @@ jobs:
         run: yarn run:upgrade
         env:
           TEST: ${{ secrets.TEST }}
+          FIRST_NAME: Mona
