@@ -21,6 +21,7 @@ const puppeteer = require('puppeteer');
 
     await page.goto('https://adeilson.com.br/wp-admin/update-core.php');
     try {
+      console.log('Start update plugins');
       await page.click('#plugins-select-all');
       await page.click('#upgrade-plugins-2');
       await page.waitForNavigation({ timeout: 0 });
@@ -30,6 +31,7 @@ const puppeteer = require('puppeteer');
     }
 
     try {
+      console.log('Start update themes');
       await page.click('#themes-select-all');
       await page.click('#upgrade-themes-2');
       await page.waitForNavigation({ timeout: 0 });
@@ -39,6 +41,7 @@ const puppeteer = require('puppeteer');
     }
 
     try {
+      console.log('Start upgrade');
       const locale = await page.$(
         '#wpbody-content > div.wrap > ul > li:nth-child(1) > form > p > input[type=hidden]:nth-child(2)'
       );
