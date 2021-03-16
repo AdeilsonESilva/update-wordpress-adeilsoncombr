@@ -2,10 +2,11 @@ require('dotenv').config();
 const puppeteer = require('puppeteer');
 
 (async () => {
+  const debug = (process.env.DEBUG || 'false') === 'true';
   console.log('Starting update');
 
   const browser = await puppeteer.launch({
-    // headless: false,
+    headless: !debug,
   });
   const page = await browser.newPage();
   try {
@@ -20,13 +21,28 @@ const puppeteer = require('puppeteer');
     await page.waitForNavigation();
 
     await page.goto('https://adeilson.com.br/wp-admin/update-core.php');
+
+    try {
+      console.log('Remove monterinsights popup');
+      const divToRemove = '#monterinsights-admin-menu-tooltip';
+      await page.evaluate(sel => {
+        const elements = document.querySelectorAll(sel);
+        for (let i = 0; i < elements.length; i++) {
+          elements[i].parentNode.removeChild(elements[i]);
+        }
+      }, divToRemove);
+      console.log('Removed monterinsights popup');
+    } catch (_) {
+      console.log('No monterinsights popup to remove');
+    }
+
     try {
       console.log('Start update plugins');
       await page.click('#plugins-select-all');
       await page.click('#upgrade-plugins-2');
       await page.waitForNavigation({ timeout: 0 });
       console.log('Updated plugins');
-    } catch (error) {
+    } catch (_) {
       console.log('No plugin to update');
     }
 
@@ -36,7 +52,7 @@ const puppeteer = require('puppeteer');
       await page.click('#upgrade-themes-2');
       await page.waitForNavigation({ timeout: 0 });
       console.log('Updated themes');
-    } catch (error) {
+    } catch (_) {
       console.log('No themes to update');
     }
 
@@ -60,13 +76,15 @@ const puppeteer = require('puppeteer');
       } else {
         throw Error('upgrade not found');
       }
-    } catch (error) {
+    } catch (_) {
       console.log('No version to upgrade');
     }
   } catch (error) {
-    console.log('error', error);
+    throw error;
   } finally {
-    await browser.close();
+    if (!debug) {
+      await browser.close();
+    }
     console.log('Done');
   }
 })();
