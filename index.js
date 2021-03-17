@@ -1,4 +1,5 @@
 require('dotenv').config();
+const core = require('@actions/core');
 const puppeteer = require('puppeteer');
 
 (async () => {
@@ -83,6 +84,7 @@ const puppeteer = require('puppeteer');
       console.log('No version to upgrade');
     }
   } catch (error) {
+    core.setFailed(error);
     throw error;
   } finally {
     if (!debug) {
