@@ -18,7 +18,7 @@ const puppeteer = require('puppeteer');
     await page.type('#user_pass', process.env.PASS_WP);
     await page.click('[type="submit"]');
 
-    await page.waitForNavigation();
+    await page.waitForNavigation({ timeout: 60 * 1000 });
 
     await page.goto('https://adeilson.com.br/wp-admin/update-core.php');
 
