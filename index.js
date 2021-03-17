@@ -69,7 +69,10 @@ const puppeteer = require('puppeteer');
         upgradeButton
       );
 
-      if (textLocale === 'pt_BR' && textUpgradeButton !== 'Reinstalar agora') {
+      if (
+        textLocale === 'pt_BR' &&
+        !String(textUpgradeButton).includes('Reinstalar')
+      ) {
         await page.click('#upgrade');
         await page.waitForNavigation({ timeout: 0 });
         console.log('Updated version');
