@@ -58,6 +58,17 @@ const puppeteer = require('puppeteer');
     }
 
     try {
+      console.log('Start update traduction');
+      await page.click(
+        '#wpbody-content > div.wrap > form > p:nth-child(4) > input'
+      );
+      await page.waitForNavigation({ timeout: 0 });
+      console.log('Updated traduction');
+    } catch (_) {
+      console.log('No traduction to update');
+    }
+
+    try {
       console.log('Start upgrade');
       const locale = await page.$(
         '#wpbody-content > div.wrap > ul > li:nth-child(1) > form > p > input[type=hidden]:nth-child(2)'
