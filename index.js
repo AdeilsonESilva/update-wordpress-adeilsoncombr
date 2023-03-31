@@ -33,7 +33,7 @@ const puppeteer = require('puppeteer');
         }
       }, divToRemove);
       console.log('Removed monterinsights popup');
-    } catch (_) {
+    } catch {
       console.log('No monterinsights popup to remove');
     }
 
@@ -43,7 +43,7 @@ const puppeteer = require('puppeteer');
       await page.click('#upgrade-plugins-2');
       await page.waitForNavigation({ timeout: 0 });
       console.log('Updated plugins');
-    } catch (_) {
+    } catch {
       console.log('No plugin to update');
     }
 
@@ -53,7 +53,7 @@ const puppeteer = require('puppeteer');
       await page.click('#upgrade-themes-2');
       await page.waitForNavigation({ timeout: 0 });
       console.log('Updated themes');
-    } catch (_) {
+    } catch {
       console.log('No themes to update');
     }
 
@@ -64,7 +64,7 @@ const puppeteer = require('puppeteer');
       );
       await page.waitForNavigation({ timeout: 0 });
       console.log('Updated traduction');
-    } catch (_) {
+    } catch {
       console.log('No traduction to update');
     }
 
@@ -89,9 +89,9 @@ const puppeteer = require('puppeteer');
         await page.waitForNavigation({ timeout: 0 });
         console.log('Updated version');
       } else {
-        throw Error('upgrade not found');
+        throw Error('button upgrade not found');
       }
-    } catch (_) {
+    } catch {
       console.log('No version to upgrade');
     }
   } catch (error) {

@@ -10,9 +10,9 @@
   "dependencies": {
     "@actions/core": "^1.10.0",
     "dotenv": "^16.0.3",
-    "puppeteer": "^19.5.2"
+    "puppeteer": "^19.8.2"
   },
   "devDependencies": {
-    "nodemon": "^2.0.20"
+    "nodemon": "^2.0.22"
   }
 }
