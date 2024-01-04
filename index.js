@@ -7,7 +7,7 @@ const puppeteer = require('puppeteer');
   console.log('Starting update');
 
   const browser = await puppeteer.launch({
-    headless: !debug,
+    headless: debug ? false : 'new',
   });
   const page = await browser.newPage();
   try {
