@@ -5,6 +5,7 @@ const puppeteer = require('puppeteer');
 (async () => {
   const debug = (process.env.DEBUG || 'false') === 'true';
   const browser = await puppeteer.launch({
+    args: ['--no-sandbox', '--disable-setuid-sandbox'],
     headless: debug ? false : 'new',
   });
   const page = await browser.newPage();
